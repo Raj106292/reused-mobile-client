@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const NavBar = () => {
 
+    const { user, logout } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logout()
+        .then(() => {
+            toast('logout successful', {
+                icon: '👏',
+              });
+        })
+    }
+
     const menuList = <>
-        <li className='lg:px-3'>Home</li>
+        <Link to='/'><li className='lg:px-3'>Home</li></Link>
         <li className='lg:px-3'>Categories</li>
-        <li className='lg:px-3'>Sign In</li>
-        <li className='lg:px-3'>Sign Out</li>
+        {
+            user?.email ? 
+            <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> : 
+            <Link to='/log-in'><li className='lg:px-3'>Sign In</li></Link>
+        }
     </>
 
     const handleToast = () => {
-        toast.success('heading to the Blog section', {duration: 3000});
+        toast.success('heading to the Blog section', { duration: 3000 });
     }
 
     return (

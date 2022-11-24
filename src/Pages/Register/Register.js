@@ -16,7 +16,7 @@ const Register = () => {
         const name = form.name.value
         const email = form.email.value
         const image = form.image.files[0]
-        const status = form.status.value
+        // const status = form.status.value
         const password = form.password.value
 
         const formData = new FormData();
