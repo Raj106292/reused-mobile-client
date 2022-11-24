@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Loader from '../../Common/Loader';
+import { saveUserToDB } from '../../Common/UserData';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Register = () => {
@@ -16,7 +17,7 @@ const Register = () => {
         const name = form.name.value
         const email = form.email.value
         const image = form.image.files[0]
-        // const status = form.status.value
+        const status = form.status.value
         const password = form.password.value
 
         const formData = new FormData();
@@ -29,11 +30,18 @@ const Register = () => {
             .then(res => res.json())
             .then(imageData => {
                 const photo = imageData.data.display_url;
+                const createdUser = {
+                    name,
+                    email,
+                    photo,
+                    status
+                }
 
                 createUser(email, password)
                     .then(result => {
                         const user = result.user;
                         console.log(user);
+                        saveUserToDB(createdUser);
 
                         updateUserProfile(name, photo)
                             .then(() => {
@@ -61,7 +69,14 @@ const Register = () => {
         signInWithGoogle()
             .then(result => {
                 const user = result.user
-                console.log(user);
+                // console.log(user);
+                const createdUserByGoogle = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    status: 'user'
+                }
+                saveUserToDB(createdUserByGoogle)
                 setLoading(false)
             })
             .catch(error => {

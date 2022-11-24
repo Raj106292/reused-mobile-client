@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
     // sign out
     const logout = () => {
         setLoading(true)
-        // localStorage.removeItem('aircnc-token')
+        localStorage.removeItem('rmiToken')
         return signOut(auth)
     }
 

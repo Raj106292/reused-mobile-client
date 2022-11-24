@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import Loader from '../../Common/Loader';
+import { saveUserToDB } from '../../Common/UserData';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Login = () => {
 
-    const { login, resetPassword, loading, setLoading } = useContext(AuthContext);
+    const { login, resetPassword, signInWithGoogle, loading, setLoading } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState('');
 
     const handleLogIn = e => {
@@ -22,6 +23,11 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const loggedInUser = {
+                    name: user.displayName,
+                    email: user.email,
+                }
+                saveUserToDB(loggedInUser);
                 toast.success(`welcome back ${user.displayName}`);
                 form.reset();
                 setLoading(false);
@@ -40,6 +46,26 @@ const Login = () => {
         .catch(error => {
             toast.error(error.message);
         })
+    }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = result.user
+                // console.log(user);
+                const createdUserByGoogle = {
+                    name: user.displayName,
+                    email: user.email,
+                    photo: user.photoURL,
+                    status: 'user'
+                }
+                saveUserToDB(createdUserByGoogle)
+                setLoading(false)
+            })
+            .catch(error => {
+                toast.error(error.message, { duration: 3000 });
+                setLoading(false)
+            })
     }
 
     return (
@@ -62,6 +88,7 @@ const Login = () => {
                             <div className="flex flex-col items-center justify-center">
                                 <p className="text-2xl mb-4 text-blue-500 font-semibold">Sign in with</p>
                                 <button
+                                    onClick={handleGoogleSignIn}
                                     type="button"
                                     data-mdb-ripple="true"
                                     data-mdb-ripple-color="light"
