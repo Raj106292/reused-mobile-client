@@ -44,17 +44,17 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    // user login
+    const login = (email, password) => {
+        setLoading(true)
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
     // sign out
     const logout = () => {
         setLoading(true)
         // localStorage.removeItem('aircnc-token')
         return signOut(auth)
-    }
-
-    // user login
-    const login = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password)
     }
 
     //7. Forget Password

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import Loader from '../../Common/Loader';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
@@ -9,6 +10,7 @@ const Register = () => {
 
     const handleSignUp = e => {
         e.preventDefault();
+        setLoading(true);
 
         const form = e.target
         const name = form.name.value
@@ -20,7 +22,7 @@ const Register = () => {
         const formData = new FormData();
         formData.append('image', image);
 
-        fetch('https://api.imgbb.com/1/upload?key=f3205625c23b2db3a03e7605eb7073a8', {
+        fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgBB_key}`, {
             method: 'POST',
             body: formData
         })
@@ -35,37 +37,37 @@ const Register = () => {
 
                         updateUserProfile(name, photo)
                             .then(() => {
-                                toast.success('signup and name, image updated successfully', { duration: 3000 });
+                                toast.success(`welcome ${user.email}`, { duration: 3000 });
                                 form.reset();
-                                setLoading(false)
+                                setLoading(false);
                             })
                             .catch(error => {
                                 toast.error(error.message, { duration: 3000 })
-                                setLoading(false)
+                                setLoading(false);
                             })
                     })
                     .catch(error => {
                         toast.error(error.message, { duration: 3000 });
-                        setLoading(false)
+                        setLoading(false);
                     })
             })
             .catch(error => {
                 toast.error(error.message, { duration: 3000 });
-                setLoading(false)
+                setLoading(false);
             })
     }
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then(result => {
-            const user = result.user
-            console.log(user);
-            setLoading(false)
-        })
-        .catch(error => {
-            toast.error(error.message, {duration: 3000});
-            setLoading(false)
-        })
+            .then(result => {
+                const user = result.user
+                console.log(user);
+                setLoading(false)
+            })
+            .catch(error => {
+                toast.error(error.message, { duration: 3000 });
+                setLoading(false)
+            })
     }
 
     return (
@@ -146,6 +148,15 @@ const Register = () => {
                             >
                                 {loading ? <Loader /> : 'Google Sign In'}
                             </button>
+                            <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                                Already have an account?
+                                <Link
+                                    to="/log-in"
+                                    className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                                >
+                                    Sign In
+                                </Link>
+                            </p>
                         </form>
                     </div>
                 </div>
