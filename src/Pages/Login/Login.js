@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../../Common/Loader';
 import { saveUserToDB } from '../../Common/UserData';
 import { AuthContext } from '../../Contexts/AuthProvider';
@@ -9,6 +9,9 @@ const Login = () => {
 
     const { login, resetPassword, signInWithGoogle, loading, setLoading } = useContext(AuthContext);
     const [userEmail, setUserEmail] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogIn = e => {
         e.preventDefault();
@@ -31,6 +34,7 @@ const Login = () => {
                 toast.success(`welcome back ${user.displayName}`);
                 form.reset();
                 setLoading(false);
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 toast.error(error.message);
@@ -61,6 +65,7 @@ const Login = () => {
                 }
                 saveUserToDB(createdUserByGoogle)
                 setLoading(false)
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 toast.error(error.message, { duration: 3000 });

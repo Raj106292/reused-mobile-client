@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../../Common/Loader';
 import { saveUserToDB } from '../../Common/UserData';
 import { AuthContext } from '../../Contexts/AuthProvider';
@@ -8,6 +8,9 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 const Register = () => {
 
     const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -48,6 +51,7 @@ const Register = () => {
                                 toast.success(`welcome ${user.email}`, { duration: 3000 });
                                 form.reset();
                                 setLoading(false);
+                                navigate(from, {replace: true})
                             })
                             .catch(error => {
                                 toast.error(error.message, { duration: 3000 })
@@ -78,6 +82,7 @@ const Register = () => {
                 }
                 saveUserToDB(createdUserByGoogle)
                 setLoading(false)
+                navigate(from, {replace: true})
             })
             .catch(error => {
                 toast.error(error.message, { duration: 3000 });
