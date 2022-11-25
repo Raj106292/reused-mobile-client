@@ -9,30 +9,20 @@ const NavBar = () => {
 
     const handleLogOut = () => {
         logout()
-            .then(() => {
-                toast('logout successful', {
-                    icon: '👏',
-                });
-            })
+        .then(() => {
+            toast('logout successful', {
+                icon: '👏',
+              });
+        })
     }
 
     const menuList = <>
         <Link to='/'><li className='lg:px-3'>Home</li></Link>
-        <div className="dropdown dropdown-hover">
-            <Link to='/brands'><li tabIndex={0} className='lg:px-3'>Brands</li></Link>
-            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-36">
-                <li>apple</li>
-                <li>samsung</li>
-                <li>xiaomi</li>
-                <li>vivo</li>
-                <li>oppo</li>
-                <li>techno</li>
-            </ul>
-        </div>
+        <Link to='/brands'><li className='lg:px-3'>Brands</li></Link>
         {
-            user?.email ?
-                <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> :
-                <Link to='/log-in'><li className='lg:px-3'>Sign In</li></Link>
+            user?.email ? 
+            <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> : 
+            <Link to='/log-in'><li className='lg:px-3'>Sign In</li></Link>
         }
     </>
 

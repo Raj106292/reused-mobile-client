@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loader from '../../Common/Loader';
 import img1 from '../../assets/banner_3.jpg';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
 
@@ -32,12 +33,12 @@ const Categories = () => {
             <div className='mt-12 flex flex-wrap justify-center gap-12'>
                 {
                     brands?.map(brand => <div key={brand._id} className="card card-compact w-96 bg-base-100 shadow-xl">
-                        <figure><img src={brand.brandLogo} className='w-full' style={{height: '200px'}} alt="Shoes" /></figure>
+                        <figure><img src={brand.brandLogo} className='w-full' style={{ height: '200px' }} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{brand.brand}</h2>
                             <p>check product quality is our first responsibility</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">products</button>
+                                <Link to={`/brand/${brand.categoryId}`}><button className="btn btn-primary">products</button></Link>
                             </div>
                         </div>
                     </div>)

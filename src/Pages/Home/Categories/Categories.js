@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Loader from '../../../Common/Loader';
 
 const Categories = () => {
@@ -33,11 +34,14 @@ const Categories = () => {
                             <h2 className="card-title">{category?.brand}</h2>
                             <p>check product quality is our first responsibility</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">products</button>
+                                <Link to={`/brand/${category.categoryId}`}><button className="btn btn-primary">products</button></Link>
                             </div>
                         </div>
                     </div>)
                 }
+            </div>
+            <div className='flex justify-center mt-8'>
+                <Link to='/brands'><button className='btn btn-secondary'>see more</button></Link>
             </div>
         </div>
     );
