@@ -3,7 +3,7 @@ import icon from '../../assets/icon.webp'
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-12'>
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <div>
                     <img src={icon} style={{ width: '50px', height: '50px' }} alt="" />

@@ -3,6 +3,7 @@ import React from 'react';
 import Loader from '../../Common/Loader';
 import img1 from '../../assets/banner_3.jpg';
 import { Link } from 'react-router-dom';
+import Footer from '../../Shared/Footer/Footer';
 
 const Categories = () => {
 
@@ -44,6 +45,7 @@ const Categories = () => {
                     </div>)
                 }
             </div>
+            <Footer></Footer>
         </div>
     );
 };
