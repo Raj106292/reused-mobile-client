@@ -19,6 +19,7 @@ const NavBar = () => {
     const menuList = <>
         <Link to='/'><li className='lg:px-3'>Home</li></Link>
         <Link to='/brands'><li className='lg:px-3'>Brands</li></Link>
+        <Link to='/dashboard'><li className='lg:px-3'>Dashboard</li></Link>
         {
             user?.email ? 
             <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> : 
