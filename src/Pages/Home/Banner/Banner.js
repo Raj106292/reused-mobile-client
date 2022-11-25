@@ -13,7 +13,7 @@ const Banner = () => {
                     <h3 className='text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600'>RD's Mobile Island</h3>
                 </div>
                 <div className="absolute transform -translate-y-1/2 left-32 top-1/2">
-                    <h3 className='text-3xl font-bold text-black'>your product is <br /> our liability</h3>
+                    <h3 className='text-3xl font-bold text-black'>you will find the best <br /> secondhand mobile</h3>
                 </div>
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                     <a href="#slide4" className="btn btn-circle btn-ghost">❮</a>

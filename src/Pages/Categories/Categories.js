@@ -29,7 +29,20 @@ const Categories = () => {
                     </div>
                 </div>
             </div>
-            {brands?.length}
+            <div className='mt-12 flex flex-wrap justify-center gap-12'>
+                {
+                    brands?.map(brand => <div key={brand._id} className="card card-compact w-96 bg-base-100 shadow-xl">
+                        <figure><img src={brand.brandLogo} className='w-full' style={{height: '200px'}} alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{brand.brand}</h2>
+                            <p>check product quality is our first responsibility</p>
+                            <div className="card-actions justify-end">
+                                <button className="btn btn-primary">products</button>
+                            </div>
+                        </div>
+                    </div>)
+                }
+            </div>
         </div>
     );
 };

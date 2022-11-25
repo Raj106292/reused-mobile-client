@@ -31,7 +31,7 @@ const Categories = () => {
                         <figure><img src={category?.brandLogo} className='w-full' style={{height: '200px'}} alt="" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{category?.brand}</h2>
-                            <p>product quality is our first choice</p>
+                            <p>check product quality is our first responsibility</p>
                             <div className="card-actions justify-end">
                                 <button className="btn btn-primary">products</button>
                             </div>
