@@ -9,11 +9,11 @@ const NavBar = () => {
 
     const handleLogOut = () => {
         logout()
-        .then(() => {
-            toast('logout successful', {
-                icon: '👏',
-              });
-        })
+            .then(() => {
+                toast('logout successful', {
+                    icon: '👏',
+                });
+            })
     }
 
     const menuList = <>
@@ -21,9 +21,9 @@ const NavBar = () => {
         <Link to='/brands'><li className='lg:px-3'>Brands</li></Link>
         <Link to='/dashboard'><li className='lg:px-3'>Dashboard</li></Link>
         {
-            user?.email ? 
-            <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> : 
-            <Link to='/log-in'><li className='lg:px-3'>Sign In</li></Link>
+            user?.email ?
+                <button onClick={handleLogOut}><li className='lg:px-3'>Sign Out</li></button> :
+                <Link to='/log-in'><li className='lg:px-3'>Sign In</li></Link>
         }
     </>
 
@@ -51,7 +51,10 @@ const NavBar = () => {
                             {menuList}
                         </ul>
                     </div>
-                    <a href='/blogs' onClick={handleToast} className="btn btn-sm btn-ghost lg:px-3">Blogs</a>
+                    <Link to='/blogs' onClick={handleToast} className="btn btn-sm btn-ghost lg:px-3">Blogs</Link>
+                    <label htmlFor="dashboard-drawer" tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
                 </div>
             </div>
         </div>

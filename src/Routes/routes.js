@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layout/Dashboard/DashboardLayout";
 import Main from "../Layout/Main/Main";
 import Blogs from "../Pages/Blogs/Blogs";
 import Categories from "../Pages/Categories/Categories";
@@ -42,4 +43,9 @@ export const routes = createBrowserRouter([
             },
         ]
     },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        errorElement: <ErrorPage />
+    }
 ])
