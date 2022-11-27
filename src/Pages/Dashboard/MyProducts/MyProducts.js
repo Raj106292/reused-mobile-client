@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
-    const { data: allProducts = [] } = useQuery({
+    const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allProducts', user.email],
         queryFn: async () => {
             const res = await fetch(`${process.env.REACT_APP_server}/products/${user.email}`, {
@@ -28,7 +28,9 @@ const MyProducts = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            if(data.acknowledged){
+                refetch();
+            }
         })
     }
 
@@ -56,7 +58,11 @@ const MyProducts = () => {
                                 <td>{product?.model}</td>
                                 <td>{product?.resalePrice}</td>
                                 <td><button onClick={() => handleStatus(product?.model)} className='btn btn-xs btn-ghost'>{product?.status}</button></td>
-                                <td><button className='btn btn-xs btn-secondary'>apply</button></td>
+                                <td>
+                                    {
+                                        product?.status === 'available' && <button className='btn btn-xs btn-secondary'>apply</button>
+                                    }
+                                </td>
                             </tr>)
                         }
                     </tbody>
