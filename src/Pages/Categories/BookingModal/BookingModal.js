@@ -15,6 +15,7 @@ const BookingModal = ({ booking, setBooking }) => {
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
+        const price = form.price.value;
         const product = form.product.value;
         const phone = form.phone.value;
         const location = form.location.value;
@@ -27,6 +28,8 @@ const BookingModal = ({ booking, setBooking }) => {
             phone,
             location,
             image,
+            price,
+            paid: false
         }
 
         fetch(`${process.env.REACT_APP_server}/bookings`, {
