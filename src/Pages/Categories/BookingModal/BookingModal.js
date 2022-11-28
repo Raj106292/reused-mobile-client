@@ -24,6 +24,7 @@ const BookingModal = ({ booking, setBooking }) => {
         const bookingData = {
             name,
             email,
+            sellerEmail: booking.sellerEmail,
             product,
             phone,
             location,

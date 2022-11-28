@@ -6,18 +6,18 @@ import { AuthContext } from '../Contexts/AuthProvider';
 
 const AdminRoute = ({ children }) => {
 
-    const { user, loader } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const [isAdmin, adminLoader] = useAdmin(user?.email);
     const location = useLocation();
 
-    if (loader || adminLoader) {
+    if (loading || adminLoader) {
         return <Loader />
     }
 
     if (user && isAdmin) {
         return children;
     }
-    return <Navigate to='/login' state={{ from: location }} replace />;
+    return <Navigate to='/log-in' state={{ from: location }} replace />;
 };
 
 export default AdminRoute;

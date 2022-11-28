@@ -6,9 +6,9 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
     const { data: allProducts = [], refetch } = useQuery({
-        queryKey: ['allProducts', user.email],
+        queryKey: ['allProducts', user?.email],
         queryFn: async () => {
-            const res = await fetch(`${process.env.REACT_APP_server}/products/${user.email}`, {
+            const res = await fetch(`${process.env.REACT_APP_server}/products/${user?.email}`, {
                 headers: {
                     'authorization': `bearer ${localStorage.getItem('rmiToken')}`
                 }
@@ -19,19 +19,22 @@ const MyProducts = () => {
     })
 
     const handleStatus = (name) => {
-        fetch(`${process.env.REACT_APP_server}/products`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({name})
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.acknowledged){
-                refetch();
-            }
-        })
+        const proceed = window.confirm('Is this out of stock?');
+        if (proceed) {
+            fetch(`${process.env.REACT_APP_server}/products`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({ name })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        refetch();
+                    }
+                })
+        }
     }
 
 
@@ -54,7 +57,7 @@ const MyProducts = () => {
                     <tbody>
                         {
                             allProducts.map((product, i) => <tr key={i} className="hover">
-                                <th>{i+1}</th>
+                                <th>{i + 1}</th>
                                 <td>{product?.model}</td>
                                 <td>{product?.resalePrice}</td>
                                 <td><button onClick={() => handleStatus(product?.model)} className='btn btn-xs btn-ghost'>{product?.status}</button></td>

@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const AddProduct = () => {
 
     const { user } = useContext(AuthContext);
     const [brands, setBrands] = useState('');
+    const navigate = useNavigate();
     const handleNewProduct = e => {
         e.preventDefault();
 
         const form = e.target;
-        const brand = form.brand.value;
         const variant = form.variant.value;
         const model = form.model.value;
         const condition = form.condition.value;
@@ -38,7 +39,6 @@ const AddProduct = () => {
             .then(imageData => {
                 const photo = imageData.data.display_url;
                 const product = {
-                    brand,
                     variant,
                     model,
                     condition,
@@ -67,6 +67,7 @@ const AddProduct = () => {
                     if(data.acknowledged){
                         toast.success('Product Successfully Added', {duration: 3000});
                         form.reset();
+                        navigate('/dashboard/my-products');
                     }
                 })
             })

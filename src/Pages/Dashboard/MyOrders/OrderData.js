@@ -1,5 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const OrderData = ({ bookingData, i, refetch }) => {
 
@@ -39,10 +40,12 @@ const OrderData = ({ bookingData, i, refetch }) => {
             </td>
             <td>
                 {
-                    bookingData?.price && !bookingData?.paid && <button className="btn btn-primary btn-xs">Pay</button>
+                    bookingData?.price && !bookingData?.paid && <Link to={`/dashboard/payment/${bookingData._id}`}>
+                        <button className="btn btn-primary btn-xs">Pay</button>
+                    </Link>
                 }
                 {
-                    bookingData?.price && bookingData?.paid && <p className='text-primary'>paid</p>
+                    bookingData?.price && bookingData?.paid && <p className='text-cyan-600'>paid</p>
                 }
             </td>
             <th>

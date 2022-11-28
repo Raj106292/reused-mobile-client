@@ -56,7 +56,7 @@ const MyOrders = () => {
                                 <tbody>
                                     {
                                         bookingsData.map((bookingData, i) => <OrderData
-                                            key={i}
+                                            key={bookingData._id}
                                             i={i}
                                             bookingData={bookingData}
                                             refetch={refetch}

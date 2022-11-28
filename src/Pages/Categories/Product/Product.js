@@ -30,19 +30,30 @@ const Product = ({ prd, setBooking }) => {
                     <p className='font-bold'>Date of Post: <span className='text-blue-500'>{prd?.date}</span></p>
                     <p className='font-bold'>Resale Price: BDT- <span className='text-blue-500'>{prd?.resalePrice}</span></p>
                     <p className='font-bold'>Original Price: BDT- <span className='text-blue-500'>{prd?.originalPrice}</span></p>
-                    <div className="card-actions justify-end">
-                        {
-                            prd.status === 'available' ?
-                                <label
-                                    htmlFor="booking-modal"
-                                    onClick={() => setBooking(prd)}
-                                    className="btn btn-primary"
-                                    disabled={user?.email === prd.sellerEmail ? true : false}
-                                >Book Now</label> :
-                                <span className='p-3 rounded-lg bg-slate-400'>
-                                    out of stock
-                                </span>
-                        }
+                    <div className="card-actions justify-between">
+                        <div>
+                            {
+                                prd?.status === 'available' && <button className='rounded px-4 py-2 bg-yellow-400' disabled={user?.email === prd.sellerEmail ? true : false}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                                    </svg>
+                                </button>
+                            }
+                        </div>
+                        <div>
+                            {
+                                prd.status === 'available' ?
+                                    <label
+                                        htmlFor="booking-modal"
+                                        onClick={() => setBooking(prd)}
+                                        className="btn btn-primary"
+                                        disabled={user?.email === prd.sellerEmail ? true : false}
+                                    >Book Now</label> :
+                                    <span className='p-3 rounded bg-slate-400'>
+                                        out of stock
+                                    </span>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
