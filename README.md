@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+my assigntment's live link: https://reused-mobile.web.app/
+
+in this assignment i have created home page with a navbar, banner, category section, most sale product and footer. for applying style on those section daisy UI components used by me.
+
+after than on category section data will loaded from mongodb database and on the home page there only three category displayed and on the brand route there has total 6 categories.
+
+every category/brand contains a products button. when user click on this it will redirect him on the brand/:id route where he can see the products of this individual brand
+
+every product of a brand contain a book now button. when user click on the button it will open a booking modal by which user can book a product for him and user can see his booked product on my-orders of dashboaRD route
+
+dashboard route contain different types of route for user, seller, admin and it will reder by user status. user can see my-order, seller can see my product and admin can see all buyers and sellers
+
+user can make payment for his booked product
