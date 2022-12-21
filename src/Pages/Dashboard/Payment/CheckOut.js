@@ -1,7 +1,10 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../../Hooks/useTitle';
 
 const CheckOut = ({ bookingData }) => {
+
+    useTitle('Payment')
 
     const { price, name, email, _id } = bookingData;
 

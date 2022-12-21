@@ -1,8 +1,12 @@
 import React from 'react';
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import useTitle from '../../Hooks/useTitle';
 
 const Blogs = () => {
+
+    useTitle('Blogs')
+
     return (
         <div>
             <h2 className="text-3xl font-semibold text-secondary underline underline-offset-8">Frequently asked question:</h2>

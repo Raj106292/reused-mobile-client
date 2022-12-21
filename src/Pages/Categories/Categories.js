@@ -4,8 +4,11 @@ import Loader from '../../Common/Loader';
 import img1 from '../../assets/banner_3.jpg';
 import { Link } from 'react-router-dom';
 import Footer from '../../Shared/Footer/Footer';
+import useTitle from '../../Hooks/useTitle';
 
 const Categories = () => {
+
+    useTitle('Brands');
 
     const { data: brands = [], isLoading } = useQuery({
         queryKey: ['brands'],

@@ -4,8 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from '../../Common/Loader';
 import { saveUserToDB } from '../../Common/UserData';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
+
+    useTitle('Sign Up')
 
     const { createUser, signInWithGoogle, updateUserProfile, loading, setLoading } = useContext(AuthContext);
     const navigate = useNavigate();

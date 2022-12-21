@@ -2,9 +2,12 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import Loader from '../../../Common/Loader';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useTitle from '../../../Hooks/useTitle';
 import OrderData from './OrderData';
 
 const MyOrders = () => {
+
+    useTitle('My Orders')
 
     const { user, loading } = useContext(AuthContext);
 

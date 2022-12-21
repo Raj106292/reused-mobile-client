@@ -2,8 +2,11 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useTitle from '../../../Hooks/useTitle';
 
 const AddProduct = () => {
+
+    useTitle('Add Product');
 
     const { user } = useContext(AuthContext);
     const [brands, setBrands] = useState('');
